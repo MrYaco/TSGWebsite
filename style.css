@@ -1,0 +1,47 @@
+/* ==========================================================================
+   1. REINITIALISATION ET STYLES DE BASE
+   ========================================================================== */
+
+/* Applique la bonne méthode de calcul des tailles à tous les éléments */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --ink: #12212a;
+    --ink-soft: #43515a;
+    --paper: #efe4bc;
+    --paper-deep: #ddd5bf;
+    --line: #12212a38;
+    --orange: #f05a28;
+    --blue: #2f586c;
+    --white: #fbfaf6
+}
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    font-family: Corbel, sans-serif, 'Goudy Old Style', Tahoma, Verdana;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* 1. Couleur de fond de la page */
+    background-color: var(--paper);
+
+    /* 2. Dessin d'une ligne horizontale + une ligne verticale */
+    background-image:
+        linear-gradient(to right, var(--paper-deep) 1px, transparent 1.5px),
+        linear-gradient(to bottom, var(--paper-deep) 1px, transparent 1.5px);
+
+    /* 3. Taille des carreaux de la grille (30px sur 30px) */
+    background-size: 30px 30px;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Solarpunk Guild</title>
+<style>
+  /* --- Header: minimal styling to match the requested spec --- */
+  header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    border-bottom: 1px solid #ccc;
+  }
+  header img.logo { height: 48px; }
+  header .brand-text h1 {
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    font-size: 24px;
+  }
+  header .brand-text p {
+    font-size: 12px;
+    margin: 2px 0 0;
+  }
+  nav { margin-left: auto; display: flex; gap: 12px; align-items: center; }
+
+  /* --- Table: basic readable styling --- */
+  table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+  th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <img src="logo.png" alt="The Solarpunk Guild logo" class="logo">
+  <div class="brand-text">
+    <h1>The Solarpunk Guild</h1>
+    <p>From dreams, to actions, to change</p>
+  </div>
+  <nav>
+    <a href="archive.html">Archive</a>
+    <button id="create-quest-btn">Create your quest</button>
+    <button id="contact-btn">Contact</button>
+  </nav>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main>
+  <!--
+    This table is the container for the quest list.
+    <thead> defines the columns once, and only once.
+    <tbody> starts EMPTY on purpose: JavaScript fills it with
+    one <tr> per quest, based on the data array below.
+    That's what makes it "dynamic": to add a quest, you add
+    an object to the array below, never a row of HTML by hand.
+  -->
+  <table id="quest-table">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Type</th>
+        <th>Difficulty</th>
+        <th>Location</th>
+        <th>Questgiver</th>
+        <th></th> <!-- action column, e.g. a "View" button -->
+      </tr>
+    </thead>
+    <tbody id="quest-body">
+      <!-- Rows are injected here by renderQuests() -->
+    </tbody>
+  </table>
+</main>
+
+<script>
+  // ---- 1. Load the data ----
+  // The quest records now live in their own file, quests.json,
+  // matching the field names from the Quest_record structure
+  // (Titre, Type, Archetype, Milestone, Location, Difficulty,
+  // Questgiver, Description).
+  //
+  // fetch() asks the browser to go get that file. It does not
+  // return the data directly: it returns a Promise, because
+  // reading a file takes a moment and JavaScript does not want
+  // to freeze the page while it waits. ".then()" says what to do
+  // once each step finishes.
+  fetch('quests.json')
+    .then(response => response.json()) // turn the file's raw text into real JS objects
+    .then(quests => renderQuests(quests))
+    .catch(error => {
+      // This runs if the file can't be reached at all -- most likely
+      // because the page was opened directly as a local file
+      // (file://...) instead of through a small local server.
+      // Browsers block that kind of fetch for security reasons.
+      console.error('Could not load quests.json:', error);
+      document.getElementById('quest-body').innerHTML =
+        '<tr><td colspan="6">Could not load quests.json. Serve this folder with a local server (see the note below the table) and reload.</td></tr>';
+    });
+
+  // ---- 2. The render function ----
+  // Turns an array of quest objects into table rows.
+  // Only a few fields are shown here to keep the table readable;
+  // Archetype, Milestone and Description will be used later,
+  // in the detail view opened by the "View" button.
+  function renderQuests(quests) {
+    const tbody = document.getElementById('quest-body');
+    tbody.innerHTML = ''; // clear previous rows before redrawing
+
+    quests.forEach(quest => {
+      const row = document.createElement('tr');
+
+      row.innerHTML = `
+        <td>${quest.Titre}</td>
+        <td>${quest.Type}</td>
+        <td>${quest.Difficulty}</td>
+        <td>${quest.Location}</td>
+        <td>${quest.Questgiver}</td>
+        <td><button class="view-btn">View</button></td>
+      `;
+
+      tbody.appendChild(row);
+    });
+  }
+</script>
+
+</body>
+</html>

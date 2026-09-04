@@ -1,0 +1,44 @@
+[
+  {
+    "Titre": "Semer des fleurs sauvages",
+    "Type": "Recuring quest",
+    "Archetype": "The gardeners",
+    "Milestone": [
+      "Trouver 3 zones de terrain nu",
+      "Semer les graines",
+      "Envoyer une photo des zones semées"
+    ],
+    "Location": "N'importe quel quartier",
+    "Difficulty": "E",
+    "Questgiver": "The Guild",
+    "Description": "Répands des graines de fleurs sauvages sur les terrains vagues ou les bords de route pour redonner de la vie aux sols urbains."
+  },
+  {
+    "Titre": "Construire une bibliothèque d'outils",
+    "Type": "Community quest",
+    "Archetype": "L'artisan",
+    "Milestone": [
+      "Trouver un local",
+      "Récolter au moins 15 outils",
+      "Ouvrir la bibliothèque au public"
+    ],
+    "Location": "Centre communautaire du quartier",
+    "Difficulty": "B",
+    "Questgiver": "Organisation",
+    "Description": "Monte avec un petit groupe un espace de partage d'outils de bricolage pour le quartier : étagères, inventaire, règles d'emprunt."
+  },
+  {
+    "Titre": "Planter des arbres en zone déforestée",
+    "Type": "Adventure quest",
+    "Archetype": "Les dryades",
+    "Milestone": [
+      "S'inscrire à l'expédition",
+      "Planter au moins 20 arbres",
+      "Participer au suivi 6 mois après"
+    ],
+    "Location": "Périphérie de la ville",
+    "Difficulty": "A",
+    "Questgiver": "Organisation",
+    "Description": "Rejoins une expédition d'un week-end pour reboiser une zone déforestée en périphérie de la ville, en partenariat avec une association locale."
+  }
+]
