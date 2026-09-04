@@ -12,7 +12,7 @@
 :root {
     --ink: #12212a;
     --ink-soft: #43515a;
-    --paper: #efe4bc;
+    --paper: #fffbed;
     --paper-deep: #ddd5bf;
     --line: #12212a38;
     --orange: #f05a28;
@@ -37,11 +37,120 @@ body {
     /* 1. Couleur de fond de la page */
     background-color: var(--paper);
 
-    /* 2. Dessin d'une ligne horizontale + une ligne verticale */
-    background-image:
-        linear-gradient(to right, var(--paper-deep) 1px, transparent 1.5px),
-        linear-gradient(to bottom, var(--paper-deep) 1px, transparent 1.5px);
 
     /* 3. Taille des carreaux de la grille (30px sur 30px) */
     background-size: 30px 30px;
+}
+
+/* ==========================================================================
+   2. HEADER / NAVIGATION (shared across pages)
+   ========================================================================== */
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--line);
+    background-color: var(--paper);
+}
+
+header img.logo {
+    height: 48px;
+}
+
+header .brand-text h1 {
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    font-size: 24px;
+    color: var(--ink);
+}
+
+header .brand-text p {
+    font-size: 12px;
+    margin: 2px 0 0;
+    color: var(--ink-soft);
+}
+
+nav {
+    margin-left: auto;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+nav button,
+nav a {
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+}
+
+/* ==========================================================================
+   3. QUEST TABLE (index.html)
+   ========================================================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+}
+
+th, td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+}
+
+/* ==========================================================================
+   4. ABOUT PAGE
+   ========================================================================== */
+
+.about-title {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 25px;
+    text-align: left;
+    margin: 32px 24px 12px;
+    color: var(--ink);
+}
+
+.about-intro {
+    margin: 0 24px 32px;
+    max-width: 65ch;
+    color: var(--ink-soft);
+}
+
+.timeline {
+    list-style: none;
+    margin: 0 24px 40px;
+    padding: 0;
+    border-left: 2px solid var(--line);
+}
+
+.timeline-item {
+    position: relative;
+    padding: 0 0 28px 24px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--orange);
+    border: 2px solid var(--paper);
+}
+
+.timeline-date {
+    display: block;
+    font-size: 12px;
+    color: var(--ink-soft);
+}
+
+.timeline-label {
+    font-weight: bold;
+    color: var(--ink);
 }
