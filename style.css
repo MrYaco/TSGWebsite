@@ -17,7 +17,8 @@
     --line: #12212a38;
     --orange: #f05a28;
     --blue: #2f586c;
-    --white: #fbfaf6
+    --white: #fbfaf6;
+    --forest-green: #228b22
 }
 
 * {
@@ -84,6 +85,42 @@ nav a {
     font-family: inherit;
     font-size: 14px;
     color: var(--ink);
+}
+
+/* Only real links (<a>) get the underline animation -- buttons are
+   left untouched since "un lien entre les pages" refers to <a>, not
+   the "Create your quest" / "Contact" buttons. */
+nav a {
+    position: relative; /* anchor point for the ::after line below */
+    text-decoration: none; /* remove the browser's default underline;
+                               ::after draws our own instead */
+    padding-bottom: 2px;
+    /* animate the text color change over the same 0.25s as the line */
+    transition: color 0.25s ease;
+}
+
+/* This invisible line is always present, just scaled down to nothing
+   (scaleX(0)) until hovered. transform-origin: center is what makes
+   it grow outward from the middle instead of from one edge. */
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--forest-green);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+}
+
+nav a:hover {
+    color: var(--forest-green);
+}
+
+nav a:hover::after {
+    transform: scaleX(1); /* grows to full width in 0.25s, from the center */
 }
 
 /* ==========================================================================
@@ -167,4 +204,128 @@ th, td {
     text-align: right;
     font-weight: bold;
     color: var(--ink);
+}
+
+/* ==========================================================================
+   5. CONTACT PAGE
+   ========================================================================== */
+
+/* The big row: form on the left, title/paragraph on the right.
+   "gap" gives breathing room between the two halves instead of
+   them touching. align-items: center keeps them vertically centered
+   relative to each other on tall screens. */
+.contact-container {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    max-width: 1100px;
+    margin: 48px auto;
+    padding: 0 24px;
+}
+
+/* This wrapper is only here so the white box and the color box
+   behind it can be positioned relative to each other. "position:
+   relative" turns it into the reference point for the two children
+   below, which are both "position: absolute". Without this, the
+   absolute boxes would position themselves relative to the whole
+   page instead of just this corner of the layout. */
+.form-visual {
+    position: relative;
+    flex: 1 1 380px;
+    max-width: 420px;
+    /* extra room so the offset box isn't clipped by the flex row */
+    margin: 0 1rem 1rem 0;
+}
+
+/* The plain-color box behind the form. It's the exact same size
+   as the white box (both use width/height: 100%) but shifted
+   1rem down and 1rem to the right with "transform: translate()".
+   Because it sits at a lower z-index, the white box covers most
+   of it -- only the bottom-right 1rem strip stays visible. */
+.form-box-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue);
+    border-radius: 20px;
+    transform: translate(1rem, 1rem);
+    z-index: 1;
+}
+
+/* The actual form, in a white rounded box sitting on top
+   (z-index: 2) of the color box above. */
+.form-box {
+    position: relative;
+    z-index: 2;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-box label {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--ink-soft);
+    margin-top: 10px;
+}
+
+.form-box input,
+.form-box textarea {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background-color: var(--paper);
+    color: var(--ink);
+    resize: vertical;
+}
+
+.form-box button {
+    margin-top: 18px;
+    align-self: flex-start;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--orange);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.contact-text {
+    flex: 1 1 380px;
+}
+
+.contact-text h2 {
+    font-family: "Times New Roman", Times, serif;
+    color: var(--ink);
+    font-size: 26px;
+    margin-top: 0;
+}
+
+.contact-text p {
+    color: var(--ink-soft);
+    max-width: 55ch;
+}
+
+/* Below this width, put the title/paragraph above the form instead
+   of side by side -- two narrow columns would get cramped. */
+@media (max-width: 720px) {
+    .contact-container {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .form-visual {
+        max-width: 100%;
+        margin: 0 1rem 1rem 0;
+    }
 }

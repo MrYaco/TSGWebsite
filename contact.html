@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Solarpunk Guild - Contact</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<!--
+  Same header markup as index.html, but the nav is trimmed down to
+  just the two links this page needs (About + back to the Questboard).
+  Keeping the same class names/structure means it automatically
+  picks up the exact same CSS rules from style.css: nothing new
+  to style here, it just re-uses section 2 of the stylesheet.
+-->
+<header>
+  <img src="logo.png" alt="The Solarpunk Guild logo" class="logo">
+  <div class="brand-text">
+    <h1>The Solarpunk Guild</h1>
+    <p>From dreams, to actions, to change</p>
+  </div>
+  <nav>
+    <a href="index.html">Questboard</a>
+    <a id="about-btn" href="About.html">Who We Are</a>
+  </nav>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main>
+  <!--
+    .contact-container is the big flex row: left side = the form,
+    right side = the title/paragraph. On narrow screens (see the
+    media query in style.css) it switches to a column so the two
+    halves stack instead of squeezing side by side.
+  -->
+  <div class="contact-container">
+
+    <!-- LEFT SIDE: the two stacked boxes + the form -->
+    <div class="form-visual">
+      <!--
+        This is the plain color box. It sits UNDERNEATH the white
+        box (z-index) and is nudged 1rem down and 1rem to the right
+        with a transform, which is what makes it "peek out" from
+        behind the white box on those two sides only.
+      -->
+      <div class="form-box-shadow" aria-hidden="true"></div>
+
+      <!--
+        This is the white box on top, holding the real form.
+        Because it's the same size as the box behind it but placed
+        at the "true" position, the offset box only shows on the
+        right and bottom edges.
+      -->
+      <form class="form-box" action="#" method="post">
+        <label for="contact-subject">Object</label>
+        <input type="text" id="contact-subject" name="subject" placeholder="What is this about?" required>
+
+        <label for="contact-email">Email address</label>
+        <input type="email" id="contact-email" name="email" placeholder="you@example.com" required>
+
+        <label for="contact-message">Content</label>
+        <textarea id="contact-message" name="message" rows="6" placeholder="Tell us everything we need to know..." required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <!-- RIGHT SIDE: title + paragraph -->
+    <div class="contact-text">
+      <h2>Let's help make this world a better place!</h2>
+      <p>Because this project is still in a prototype phase, if you want to create a quest send us all the information. We will only accept well thought and well described quest. If you have any other questions we will try to answer as fast as possible!</p>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
