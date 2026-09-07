@@ -124,19 +124,144 @@ nav a:hover::after {
 }
 
 /* ==========================================================================
-   3. QUEST TABLE (index.html)
+   3. QUEST BOARD -- carte de quête (index.html)
    ========================================================================== */
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 24px;
+/* Le tableau HTML/CSS a été retiré : les quêtes s'affichent maintenant en
+   cartes (voir le JS de index.html), donc les anciennes règles table/th/td
+   n'ont plus de raison d'exister ici. */
+
+/* La grille qui contient toutes les cartes. "auto-fill" + "minmax" veut dire :
+   "mets autant de colonnes de 280px minimum que la largeur de l'écran permet,
+   et étire-les pour remplir l'espace restant". Résultat : 1 colonne sur
+   mobile, 2-3 sur desktop, sans media query à écrire nous-même. */
+.quest-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px 24px;
+    margin: 32px 24px;
 }
 
-th, td {
-    border: 1px solid var(--line);
-    padding: 8px 12px;
-    text-align: left;
+/* Même principe que .form-visual sur contact.html : ce wrapper sert de
+   point de référence ("position: relative") pour les deux boîtes
+   positionnées en absolu à l'intérieur (la carte + son ombre décalée). */
+.quest-card-wrap {
+    position: relative;
+    margin: 0 1rem 1rem 0;
+}
+
+/* La boîte de couleur derrière, décalée avec "transform: translate()" --
+   exactement la technique déjà utilisée dans .form-box-shadow. Réutiliser
+   ce même effet donne une identité visuelle cohérente entre les pages. */
+.quest-card-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    transform: translate(0.5rem, 0.5rem);
+    z-index: 1;
+}
+
+/* La carte elle-même, posée par-dessus (z-index: 2). */
+.quest-card {
+    position: relative;
+    z-index: 2;
+    background-color: var(--white);
+    border: 1px solid var(--ink);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+}
+
+.quest-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.quest-title {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Le badge de difficulté : un cercle plein avec la lettre (E, D, C...).
+   La couleur vient d'une variable CSS (--diff-color) réglée en ligne par
+   le JS -- ça évite d'écrire une classe CSS différente pour chaque lettre
+   de difficulté possible (E à S). */
+.difficulty-badge {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--white);
+    background-color: var(--diff-color, var(--ink-soft));
+}
+
+.quest-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    font-size: 12px;
+    color: var(--ink-soft);
+}
+
+.quest-meta span {
+    white-space: nowrap;
+}
+
+.quest-description {
+    font-size: 14px;
+    color: var(--ink-soft);
+    flex-grow: 1; /* pousse le footer vers le bas, même si le texte est court */
+    margin: 0;
+}
+
+.quest-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-top: 6px;
+    border-top: 1px solid var(--line);
+}
+
+.quest-xp {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--orange);
+}
+
+.quest-instructions-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--forest-green);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.quest-board-error {
+    grid-column: 1 / -1;
+    color: var(--ink-soft);
+    font-style: italic;
 }
 
 /* ==========================================================================

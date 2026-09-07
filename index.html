@@ -25,42 +25,32 @@
 <!-- ============ MAIN ============ -->
 <main>
   <!--
-    This table is the container for the quest list.
-    <thead> defines the columns once, and only once.
-    <tbody> starts EMPTY on purpose: JavaScript fills it with
-    one <tr> per quest, based on the data array below.
-    That's what makes it "dynamic": to add a quest, you add
-    an object to the array below, never a row of HTML by hand.
+    This div is the container for the quest cards, replacing the old
+    <table>. It starts EMPTY on purpose: JavaScript fills it with one
+    "card" element per quest, based on the data loaded from quests.json.
+    That's still the same "dynamic" principle as before: to add a quest,
+    you add an entry to quests.json, never a card of HTML by hand.
   -->
-  <table id="quest-table">
-    <thead>
-      <tr>
-        <th>Titre</th>
-        <th>Type</th>
-        <th>Difficulty</th>
-        <th>Location</th>
-        <th>Questgiver</th>
-        <th></th> <!-- action column, e.g. a "View" button -->
-      </tr>
-    </thead>
-    <tbody id="quest-body">
-      <!-- Rows are injected here by renderQuests() -->
-    </tbody>
-  </table>
+  <div id="quest-board" class="quest-board">
+    <!-- Cards are injected here by renderQuests() -->
+  </div>
 </main>
 
 <script>
   // ---- 1. Load the data ----
-  // The quest records now live in their own file, quests.json,
-  // matching the field names from the Quest_record structure
-  // (Titre, Type, Archetype, Milestone, Location, Difficulty,
-  // Questgiver, Description).
+  // quests.json is now generated from the Guild's real quest database
+  // (a Google Sheet exported as CSV, converted to JSON). It only ever
+  // contains PUBLISHED quests, and only the fields that are safe to
+  // show publicly -- private fields like the Questgiver's email or the
+  // exact GPS location never leave the private database in the first
+  // place. This is the same "public/private boundary" that the future
+  // Apps Script endpoint will enforce; for now it's applied once, by
+  // hand, when quests.json is generated.
   //
-  // fetch() asks the browser to go get that file. It does not
-  // return the data directly: it returns a Promise, because
-  // reading a file takes a moment and JavaScript does not want
-  // to freeze the page while it waits. ".then()" says what to do
-  // once each step finishes.
+  // fetch() asks the browser to go get that file. It returns a Promise,
+  // not the data directly, because reading a file takes a moment and
+  // JavaScript does not want to freeze the page while it waits.
+  // ".then()" says what to do once each step finishes.
   fetch('quests.json')
     .then(response => response.json()) // turn the file's raw text into real JS objects
     .then(quests => renderQuests(quests))
@@ -70,32 +60,75 @@
       // (file://...) instead of through a small local server.
       // Browsers block that kind of fetch for security reasons.
       console.error('Could not load quests.json:', error);
-      document.getElementById('quest-body').innerHTML =
-        '<tr><td colspan="6">Could not load quests.json. Serve this folder with a local server (see the note below the table) and reload.</td></tr>';
+      document.getElementById('quest-board').innerHTML =
+        '<p class="quest-board-error">Impossible de charger quests.json. Sers ce dossier avec un petit serveur local (voir la note ci-dessous) puis recharge la page.</p>';
     });
 
+  // A quest's difficulty is a letter, E through S. Rather than write
+  // one CSS class per letter, we look the color up here in JS and set
+  // it as an inline CSS variable (--diff-color) on each badge -- see
+  // the .difficulty-badge rule in style.css. Only E/D/C exist in the
+  // MVP data for now (quests are capped at C), but the map covers the
+  // full scale from Quest_Design.md so nothing breaks later.
+  const DIFFICULTY_COLORS = {
+    E: 'var(--forest-green)',
+    D: 'var(--blue)',
+    C: 'var(--orange)',
+    B: '#a83232',
+    A: '#6b2fa8',
+    S: 'var(--ink)',
+  };
+
   // ---- 2. The render function ----
-  // Turns an array of quest objects into table rows.
-  // Only a few fields are shown here to keep the table readable;
-  // Archetype, Milestone and Description will be used later,
-  // in the detail view opened by the "View" button.
+  // Turns an array of quest objects into card elements. This function
+  // never needs to change when the data source changes (local file
+  // today, a live Google Sheet endpoint tomorrow) because it only
+  // depends on the shape of a quest object, not on where it came from.
   function renderQuests(quests) {
-    const tbody = document.getElementById('quest-body');
-    tbody.innerHTML = ''; // clear previous rows before redrawing
+    const board = document.getElementById('quest-board');
+    board.innerHTML = ''; // clear previous cards before redrawing
+
+    if (quests.length === 0) {
+      board.innerHTML = '<p class="quest-board-error">Aucune quête publiée pour le moment.</p>';
+      return;
+    }
 
     quests.forEach(quest => {
-      const row = document.createElement('tr');
+      const wrap = document.createElement('div');
+      wrap.className = 'quest-card-wrap';
 
-      row.innerHTML = `
-        <td>${quest.Titre}</td>
-        <td>${quest.Type}</td>
-        <td>${quest.Difficulty}</td>
-        <td>${quest.Location}</td>
-        <td>${quest.Questgiver}</td>
-        <td><button class="view-btn">View</button></td>
+      const diffColor = DIFFICULTY_COLORS[quest.difficulty] || 'var(--ink-soft)';
+
+      // The primary action per the product vision is "open the official
+      // instructions" (quest.sourceUrl), not a generic "View" button.
+      // If a quest somehow has no sourceUrl, we disable the button
+      // instead of linking nowhere.
+      const hasSource = Boolean(quest.sourceUrl);
+      const buttonHtml = hasSource
+        ? `<a class="quest-instructions-btn" href="${quest.sourceUrl}" target="_blank" rel="noopener">Ouvrir les instructions</a>`
+        : `<button class="quest-instructions-btn" disabled>Instructions à venir</button>`;
+
+      wrap.innerHTML = `
+        <div class="quest-card-shadow" style="background-color: ${diffColor}"></div>
+        <div class="quest-card">
+          <div class="quest-card-header">
+            <h3 class="quest-title">${quest.title}</h3>
+            <div class="difficulty-badge" style="--diff-color: ${diffColor}">${quest.difficulty}</div>
+          </div>
+          <div class="quest-meta">
+            <span>${quest.type}</span>
+            <span>${quest.questgiver} (${quest.questgiverType})</span>
+            <span>${quest.region}</span>
+          </div>
+          <p class="quest-description">${quest.description}</p>
+          <div class="quest-card-footer">
+            <span class="quest-xp">+${quest.xpReward} XP</span>
+            ${buttonHtml}
+          </div>
+        </div>
       `;
 
-      tbody.appendChild(row);
+      board.appendChild(wrap);
     });
   }
 </script>

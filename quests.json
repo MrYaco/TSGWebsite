@@ -1,44 +1,44 @@
 [
   {
-    "Titre": "Semer des fleurs sauvages",
-    "Type": "Recuring quest",
-    "Archetype": "The gardeners",
-    "Milestone": [
-      "Trouver 3 zones de terrain nu",
-      "Semer les graines",
-      "Envoyer une photo des zones semées"
+    "id": "TSG-2026-0001",
+    "title": "Observe clouds for NASA and GLOBE",
+    "type": "recurring",
+    "archetype": "archivist",
+    "difficulty": "E",
+    "questgiverType": "organization",
+    "questgiver": "GLOBE Observer",
+    "description": "Use the GLOBE Observer protocol to submit a cloud observation that can complement satellite data.",
+    "locationMode": "in_person",
+    "region": "Horry County, South Carolina",
+    "startsAt": "8-17-2026",
+    "dueAt": "9-17-2026",
+    "peopleNeeded": "20",
+    "milestones": [
+      "Review the GLOBE cloud protocol",
+      "Submit one observation"
     ],
-    "Location": "N'importe quel quartier",
-    "Difficulty": "E",
-    "Questgiver": "The Guild",
-    "Description": "Répands des graines de fleurs sauvages sur les terrains vagues ou les bords de route pour redonner de la vie aux sols urbains."
+    "xpReward": "25",
+    "sourceUrl": "https://observer.globe.gov/"
   },
   {
-    "Titre": "Construire une bibliothèque d'outils",
-    "Type": "Community quest",
-    "Archetype": "L'artisan",
-    "Milestone": [
-      "Trouver un local",
-      "Récolter au moins 15 outils",
-      "Ouvrir la bibliothèque au public"
+    "id": "TSG-2026-0002",
+    "title": "Report invasive apple snail egg masses",
+    "type": "recurring",
+    "archetype": "archivist",
+    "difficulty": "E",
+    "questgiverType": "organization",
+    "questgiver": "South Carolina DNR",
+    "description": "Photograph and report suspected island apple snails or their bright pink egg masses using SCDNR guidance.",
+    "locationMode": "in_person",
+    "region": "South Carolina",
+    "startsAt": "8-17-2026",
+    "dueAt": "12-31-2026",
+    "peopleNeeded": "50",
+    "milestones": [
+      "Confirm the sighting matches the reporting guidance",
+      "Submit the location and photograph to SCDNR"
     ],
-    "Location": "Centre communautaire du quartier",
-    "Difficulty": "B",
-    "Questgiver": "Organisation",
-    "Description": "Monte avec un petit groupe un espace de partage d'outils de bricolage pour le quartier : étagères, inventaire, règles d'emprunt."
-  },
-  {
-    "Titre": "Planter des arbres en zone déforestée",
-    "Type": "Adventure quest",
-    "Archetype": "Les dryades",
-    "Milestone": [
-      "S'inscrire à l'expédition",
-      "Planter au moins 20 arbres",
-      "Participer au suivi 6 mois après"
-    ],
-    "Location": "Périphérie de la ville",
-    "Difficulty": "A",
-    "Questgiver": "Organisation",
-    "Description": "Rejoins une expédition d'un week-end pour reboiser une zone déforestée en périphérie de la ville, en partenariat avec une association locale."
+    "xpReward": "20",
+    "sourceUrl": "https://www.dnr.sc.gov/volunteering/habitats.html"
   }
 ]
