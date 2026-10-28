@@ -1,0 +1,483 @@
+/* =========================================================================
+   COMPONENTS.CSS — Reusable pieces of the interface
+   -------------------------------------------------------------------------
+   Contents:
+     1. Hero banner (big title block at the top of a page)
+     2. Content blocks (cards of text, notices)
+     3. Filters (quest board and archive)
+     4. Quest card — compact format (see "Quest representation.md")
+     5. Level badge (the colored letter)
+     6. Quest detail modal — complete format
+     7. Class cards (class information page)
+     8. Forms (quest creation page)
+   ========================================================================= */
+
+/* ---------- 1. Hero banner ---------- */
+.hero {
+  padding: var(--space-xxl) 0 var(--space-xl);
+  background-color: var(--color-secondary);
+  color: var(--color-text-on-dark);
+}
+
+.hero h1 {
+  color: var(--color-text-on-dark);
+}
+
+.hero .page-intro {
+  color: var(--color-highlight);
+}
+
+/* Smaller hero used on inner pages. */
+.hero--compact {
+  padding: var(--space-xl) 0;
+}
+
+/* ---------- 2. Content blocks ---------- */
+
+/* A grid that places blocks side by side, then stacks them on mobile. */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--space-l);
+}
+
+.content-block {
+  padding: var(--space-l);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-card);
+}
+
+.content-block > :last-child {
+  margin-bottom: 0;
+}
+
+/* Dark green call-to-action block. */
+.call-to-action {
+  padding: var(--space-xl);
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border-radius: var(--border-radius-medium);
+  text-align: center;
+}
+
+.call-to-action h2 {
+  color: var(--color-text-on-dark);
+}
+
+.call-to-action .button--primary {
+  background-color: var(--color-background);
+  color: var(--color-secondary);
+}
+
+.call-to-action .button--primary:hover {
+  background-color: var(--color-highlight-soft);
+}
+
+/* Information or warning message. */
+.notice {
+  padding: var(--space-m) var(--space-l);
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-highlight-soft);
+  border-radius: var(--border-radius-small);
+}
+
+.notice--warning {
+  border-left-color: var(--color-warning-border);
+  background-color: var(--color-warning-background);
+}
+
+/* Small rounded label ("Work in progress", "Completed", ...). */
+.tag {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background-color: var(--color-highlight-soft);
+  color: var(--color-primary);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+/* ---------- 3. Filters ---------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-m);
+  margin: 0 0 var(--space-l);
+  padding: var(--space-m);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  background-color: var(--color-surface);
+}
+
+.filter-bar__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 12rem;
+}
+
+.filter-bar__label {
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.filter-bar__select {
+  padding: var(--space-s);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-small);
+  background-color: var(--color-surface);
+  font: inherit;
+}
+
+.result-count {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+/* ---------- 4. Quest card (compact format) ---------- */
+.quest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--space-l);
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--offset-box-distance) var(--offset-box-distance) 0;
+}
+
+/* Message shown when no quest matches. */
+.quest-grid__message {
+  grid-column: 1 / -1;
+  color: var(--color-text-muted);
+}
+
+.quest-card {
+  position: relative; /* needed for the clickable area (see .quest-card__open-button) */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  height: 100%;
+  padding: var(--space-l);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--border-radius-medium);
+  /* Offset box: a solid green "shadow" shifted down and right, without blur. */
+  box-shadow: var(--offset-box-distance) var(--offset-box-distance) 0 var(--color-highlight);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* On hover the card lifts a little and its offset box grows. */
+.quest-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: calc(var(--offset-box-distance) + 2px) calc(var(--offset-box-distance) + 2px) 0 var(--color-highlight);
+}
+
+.quest-card__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+}
+
+.quest-card__archetype {
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.quest-card__title {
+  margin: 0;
+  font-size: var(--font-size-large);
+}
+
+/* The title button covers the whole card (::after), so the full card
+   is clickable while staying a single, accessible button. */
+.quest-card__open-button {
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.quest-card__open-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border-radius-medium);
+}
+
+.quest-card__participants {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+/* Grey lines that suggest a description (decorative only). */
+.quest-card__description-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: var(--space-s);
+}
+
+.quest-card__description-line {
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--color-placeholder-line);
+}
+
+.quest-card__description-line:nth-child(2) {
+  width: 85%;
+}
+
+.quest-card__description-line:nth-child(3) {
+  width: 60%;
+}
+
+/* ---------- 5. Level badge ---------- */
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-large);
+  font-weight: 700;
+  background-color: var(--color-level-f);
+}
+
+/* One color per level: the class name is "level-badge--" + letter. */
+.level-badge--f { background-color: var(--color-level-f); }
+.level-badge--e { background-color: var(--color-level-e); }
+.level-badge--d { background-color: var(--color-level-d); }
+.level-badge--c { background-color: var(--color-level-c); }
+.level-badge--b { background-color: var(--color-level-b); }
+.level-badge--a { background-color: var(--color-level-a); }
+.level-badge--s { background-color: var(--color-level-s); }
+
+/* ---------- 6. Quest detail modal (complete format) ---------- */
+.quest-modal {
+  width: 80vw;
+  max-width: 64rem;
+  max-height: 80vh;
+  overflow-y: auto; /* long quests scroll inside the card */
+  padding: 0;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-raised);
+  color: var(--color-text);
+}
+
+/* The page behind the modal becomes blurry. */
+.quest-modal::backdrop {
+  background-color: rgba(37, 61, 44, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.quest-modal__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-m);
+  padding: var(--space-l);
+  background-color: var(--color-secondary);
+  color: var(--color-text-on-dark);
+}
+
+.quest-modal__heading {
+  flex: 1;
+}
+
+.quest-modal__archetype {
+  margin: 0;
+  color: var(--color-highlight);
+  font-weight: 600;
+}
+
+.quest-modal__title {
+  margin: 0;
+  color: var(--color-text-on-dark);
+}
+
+.quest-modal__close-button {
+  background: transparent;
+  border: 2px solid var(--color-highlight);
+  border-radius: var(--border-radius-small);
+  color: var(--color-text-on-dark);
+  padding: var(--space-xs) var(--space-m);
+  font: inherit;
+  cursor: pointer;
+}
+
+.quest-modal__body {
+  padding: var(--space-l);
+}
+
+/* Key facts shown as a small grid (participants, expense, location). */
+.quest-modal__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--space-m);
+  margin: 0 0 var(--space-l);
+}
+
+.quest-modal__fact {
+  padding: var(--space-m);
+  background-color: var(--color-highlight-soft);
+  border-radius: var(--border-radius-small);
+}
+
+.quest-modal__fact dt {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+.quest-modal__fact dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.quest-modal__section-title {
+  margin-top: var(--space-l);
+  font-size: var(--font-size-large);
+}
+
+.quest-modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+  padding-top: var(--space-l);
+  border-top: 1px solid var(--color-border);
+}
+
+.quest-modal__actions-note {
+  margin: 0;
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+/* ---------- 7. Class cards ---------- */
+.class-card {
+  border-top: 6px solid var(--color-primary);
+}
+
+.class-card__subtitle {
+  margin: var(--space-m) 0 var(--space-s);
+  font-size: var(--font-size-base);
+  color: var(--color-primary);
+}
+
+.class-card__level-list {
+  list-style: none;
+  padding: 0;
+}
+
+.class-card__level {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-s);
+  padding: var(--space-s) 0;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.class-card__level-details {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+/* ---------- 8. Forms ---------- */
+.form-section {
+  margin: 0 0 var(--space-l);
+  padding: var(--space-l);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  background-color: var(--color-surface);
+}
+
+.form-section legend {
+  padding: 0 var(--space-s);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-large);
+  color: var(--color-secondary);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-m);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-field--full-width {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: var(--space-s);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-small);
+  font: inherit;
+  background-color: var(--color-surface);
+}
+
+.form-field textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.form-field__hint {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+/* Generated JSON shown after the form is submitted. */
+.code-output {
+  overflow-x: auto;
+  padding: var(--space-m);
+  background-color: var(--color-secondary);
+  color: var(--color-text-on-dark);
+  border-radius: var(--border-radius-small);
+  font-size: var(--font-size-small);
+}
+
+.status-message {
+  min-height: 1.5em;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.status-message--error {
+  color: var(--color-error);
+}
+
+/* ---------- Mobile adjustments ---------- */
+@media (max-width: 720px) {
+  .quest-modal {
+    width: 95vw;
+    max-height: 90vh;
+  }
+
+  .filter-bar__field {
+    min-width: 100%;
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+  LIBRARY PAGE
+  Paragraph 1: "What knowledge do you seek?"
+  Paragraph 2: "How does all of this work?" — button to the class page,
+               explanation of the quest board, explanation of a quest.
+  Paragraph 3: user-created guides (work in progress).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library | The Solarpunk Guild</title>
+  <meta name="description" content="Guides and explanations to understand the quest board, the quests and the classes of The Solarpunk Guild.">
+  <link rel="canonical" href="https://www.solarpunkguild.example/library.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Library | The Solarpunk Guild">
+  <meta property="og:description" content="What knowledge do you seek? Guides to understand the quests and the classes of the Guild.">
+  <meta property="og:url" content="https://www.solarpunkguild.example/library.html">
+  <meta name="theme-color" content="#253D2C">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&display=swap">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <script type="module" src="js/pages/simplePage.js"></script>
+</head>
+<body data-page="library" data-page-title-key="page.library.title" data-page-description-key="page.library.description">
+
+  <header id="site-header"></header>
+
+  <main id="main-content">
+    <!-- Paragraph 1 -->
+    <section class="hero hero--compact">
+      <div class="page-container">
+        <h1 data-i18n="library.title">Library</h1>
+        <p class="page-intro" data-i18n="library.intro">What knowledge do you seek?</p>
+      </div>
+    </section>
+
+    <!-- Paragraph 2: how does all of this work? -->
+    <section class="page-section" aria-labelledby="how-it-works-title">
+      <div class="page-container">
+        <h2 id="how-it-works-title" data-i18n="library.howItWorks.title">How does all of this work?</h2>
+
+        <!-- Button 2.1: link to the class information page -->
+        <p>
+          <a class="button button--primary" href="classes.html" data-i18n="library.classesButton">Discover the Guild classes</a>
+        </p>
+
+        <div class="content-grid">
+          <!-- Paragraph 2.2: explanation of the quest board -->
+          <article class="content-block">
+            <h3 data-i18n="library.questboard.title">The quest board</h3>
+            <p data-i18n="library.questboard.text">The quest board gathers every available quest. Use the filters to choose a quest type (citizen science, solo near you, local group or online) and a difficulty, then click a card to see all its details.</p>
+          </article>
+          <!-- Paragraph 2.3: explanation of a quest -->
+          <article class="content-block">
+            <h3 data-i18n="library.quest.title">Anatomy of a quest</h3>
+            <p data-i18n="library.quest.text">Each quest has a level from F (easiest) to S (hardest), an archetype that tells which class it helps you grow in, a suggested number of participants, milestones to follow and a link to the official instructions. Quests never require money.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paragraph 3: user-created instructions (work in progress) -->
+    <section class="page-section" aria-labelledby="community-guides-title">
+      <div class="page-container">
+        <h2 id="community-guides-title" data-i18n="library.community.title">Community guides</h2>
+        <div class="notice">
+          <p><span class="tag" data-i18n="library.community.badge">Work in progress</span></p>
+          <p data-i18n="library.community.text">Guides written by Guild members will soon appear here. Every submission will be reviewed by the Guild before publication.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

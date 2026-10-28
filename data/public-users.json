@@ -1,0 +1,20 @@
+[
+  {
+    "userId": "U-0001",
+    "userName": "Fern",
+    "generalLevel": 3,
+    "classLevels": { "questgiver": 1, "archivist": 2, "nightwatcher": 1 }
+  },
+  {
+    "userId": "U-0002",
+    "userName": "Lumen",
+    "generalLevel": 2,
+    "classLevels": { "questgiver": 1, "gardener": 1 }
+  },
+  {
+    "userId": "U-0003",
+    "userName": "Moss",
+    "generalLevel": 1,
+    "classLevels": { "gardener": 1 }
+  }
+]

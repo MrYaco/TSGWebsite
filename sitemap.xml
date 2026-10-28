@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- List of public pages for search engines.
+     TODO: replace "www.solarpunkguild.example" by the real domain, and add every new public page here. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.solarpunkguild.example/</loc></url>
+  <url><loc>https://www.solarpunkguild.example/questboard.html</loc></url>
+  <url><loc>https://www.solarpunkguild.example/archive.html</loc></url>
+  <url><loc>https://www.solarpunkguild.example/library.html</loc></url>
+  <url><loc>https://www.solarpunkguild.example/classes.html</loc></url>
+  <url><loc>https://www.solarpunkguild.example/contact.html</loc></url>
+</urlset>

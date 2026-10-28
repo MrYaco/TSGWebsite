@@ -1,0 +1,6 @@
+# Allows every search engine to read the site, except the internal quest creation tool.
+# TODO: replace "www.solarpunkguild.example" by the real domain.
+User-agent: *
+Disallow: /quest-creation.html
+
+Sitemap: https://www.solarpunkguild.example/sitemap.xml

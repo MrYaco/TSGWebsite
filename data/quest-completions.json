@@ -1,0 +1,5 @@
+[
+  { "questId": "Q-0006", "userId": "U-0001", "completedAt": "2026-09-12" },
+  { "questId": "Q-0007", "userId": "U-0002", "completedAt": "2026-10-04" },
+  { "questId": "Q-0007", "userId": "U-0003", "completedAt": "2026-10-04" }
+]

@@ -1,0 +1,143 @@
+{
+  "isLevelingSystemFinal": false,
+  "lastUpdated": "2026-08-14",
+  "classes": [
+    {
+      "classId": "questgiver",
+      "isQuestArchetype": false,
+      "name": { "en": "Questgivers", "fr": "Donneurs de quêtes" },
+      "description": { "en": "The ones giving quests.", "fr": "Celles et ceux qui donnent des quêtes." },
+      "howToLevelUp": [
+        { "en": "By getting your quests completed", "fr": "En voyant vos quêtes accomplies" }
+      ],
+      "levels": [
+        { "name": { "en": "Apprentice", "fr": "Apprenti·e" }, "requiredXp": 100, "rankRange": null },
+        { "name": { "en": "Accredited", "fr": "Accrédité·e" }, "requiredXp": 1000, "rankRange": null }
+      ]
+    },
+    {
+      "classId": "artist",
+      "isQuestArchetype": true,
+      "name": { "en": "Artists", "fr": "Artistes" },
+      "description": {
+        "en": "The Solarpunks using their arts to improve the world.",
+        "fr": "Les Solarpunks qui utilisent leurs arts pour améliorer le monde."
+      },
+      "howToLevelUp": [
+        { "en": "By completing art related quests", "fr": "En accomplissant des quêtes artistiques" },
+        { "en": "By participating in art events", "fr": "En participant à des événements artistiques" }
+      ],
+      "levels": [
+        { "name": { "en": "New talent", "fr": "Nouveau talent" }, "requiredXp": 100, "rankRange": "F–D" },
+        { "name": { "en": "The dreamer", "fr": "Le rêveur" }, "requiredXp": 500, "rankRange": "D–B" },
+        { "name": { "en": "The dream maker", "fr": "Le faiseur de rêve" }, "requiredXp": 2500, "rankRange": "B–S" }
+      ]
+    },
+    {
+      "classId": "nightwatcher",
+      "isQuestArchetype": true,
+      "name": { "en": "Nightwatchers", "fr": "Veilleurs de nuit" },
+      "description": {
+        "en": "The Solarpunks keeping watch on the disturbances of the night so that we can all go stargazing or sleep peacefully.",
+        "fr": "Les Solarpunks qui veillent sur les perturbations de la nuit pour que nous puissions tous observer les étoiles ou dormir paisiblement."
+      },
+      "howToLevelUp": [
+        { "en": "By completing light pollution quests", "fr": "En accomplissant des quêtes sur la pollution lumineuse" },
+        { "en": "By completing noise pollution quests", "fr": "En accomplissant des quêtes sur la pollution sonore" },
+        { "en": "By completing astronomy quests", "fr": "En accomplissant des quêtes d'astronomie" }
+      ],
+      "levels": [
+        { "name": { "en": "Night owl", "fr": "Oiseau de nuit" }, "requiredXp": null, "rankRange": null },
+        { "name": { "en": "The moon guardian", "fr": "Le gardien de la lune" }, "requiredXp": null, "rankRange": null }
+      ]
+    },
+    {
+      "classId": "giver",
+      "isQuestArchetype": true,
+      "name": { "en": "The givers", "fr": "Les donateurs" },
+      "description": {
+        "en": "The Solarpunks giving to make the world a better place.",
+        "fr": "Les Solarpunks qui donnent pour rendre le monde meilleur."
+      },
+      "howToLevelUp": [
+        { "en": "By completing charity quests", "fr": "En accomplissant des quêtes caritatives" }
+      ],
+      "levels": [
+        { "name": { "en": "The generous one", "fr": "L'âme généreuse" }, "requiredXp": null, "rankRange": "E–C" },
+        { "name": { "en": "The investor", "fr": "L'investisseur" }, "requiredXp": null, "rankRange": "C–S" }
+      ]
+    },
+    {
+      "classId": "artisan",
+      "isQuestArchetype": true,
+      "name": { "en": "The artisans", "fr": "Les artisans" },
+      "description": { "en": "The Solarpunks building things.", "fr": "Les Solarpunks qui construisent des choses." },
+      "howToLevelUp": [
+        { "en": "By completing artisan quests", "fr": "En accomplissant des quêtes d'artisanat" },
+        { "en": "By completing repair quests", "fr": "En accomplissant des quêtes de réparation" }
+      ],
+      "levels": [
+        { "name": { "en": "The apprentice", "fr": "L'apprenti" }, "requiredXp": null, "rankRange": null },
+        { "name": { "en": "Junior artisan", "fr": "L'artisan junior" }, "requiredXp": null, "rankRange": null },
+        { "name": { "en": "Senior artisan", "fr": "L'artisan senior" }, "requiredXp": null, "rankRange": null },
+        { "name": { "en": "Master artisan", "fr": "Le maître artisan" }, "requiredXp": null, "rankRange": null }
+      ]
+    },
+    {
+      "classId": "dryad",
+      "isQuestArchetype": true,
+      "name": { "en": "The dryads", "fr": "Les dryades" },
+      "description": { "en": "The Solarpunks connected to nature.", "fr": "Les Solarpunks connectés à la nature." },
+      "howToLevelUp": [
+        { "en": "By completing forestry quests", "fr": "En accomplissant des quêtes de foresterie" },
+        { "en": "By completing natural restoration quests", "fr": "En accomplissant des quêtes de restauration naturelle" }
+      ],
+      "levels": [
+        { "name": { "en": "Dryad", "fr": "Dryade" }, "requiredXp": null, "rankRange": "E–S" }
+      ]
+    },
+    {
+      "classId": "gardener",
+      "isQuestArchetype": true,
+      "name": { "en": "The gardeners", "fr": "Les jardiniers" },
+      "description": { "en": "The Solarpunks growing food.", "fr": "Les Solarpunks qui cultivent la nourriture." },
+      "howToLevelUp": [
+        { "en": "By completing gardening quests", "fr": "En accomplissant des quêtes de jardinage" }
+      ],
+      "levels": [
+        { "name": { "en": "Green thumb", "fr": "Main verte" }, "requiredXp": null, "rankRange": "E–C" },
+        { "name": { "en": "Guardian of the pantry", "fr": "Gardien du garde-manger" }, "requiredXp": null, "rankRange": "B–S" }
+      ]
+    },
+    {
+      "classId": "activist",
+      "isQuestArchetype": true,
+      "name": { "en": "The activists", "fr": "Les activistes" },
+      "description": {
+        "en": "The Solarpunks who go to events to make the change.",
+        "fr": "Les Solarpunks qui se rendent à des événements pour faire le changement."
+      },
+      "howToLevelUp": [
+        { "en": "By completing adventure type quests", "fr": "En accomplissant des quêtes de type aventure" }
+      ],
+      "levels": [
+        { "name": { "en": "Activist", "fr": "Activiste" }, "requiredXp": null, "rankRange": "E–S" }
+      ]
+    },
+    {
+      "classId": "archivist",
+      "isQuestArchetype": true,
+      "name": { "en": "The archivists", "fr": "Les archivistes" },
+      "description": {
+        "en": "The Solarpunks archiving data for future scientific understanding.",
+        "fr": "Les Solarpunks qui archivent des données pour la compréhension scientifique de demain."
+      },
+      "howToLevelUp": [
+        { "en": "By completing archiving quests", "fr": "En accomplissant des quêtes d'archivage" }
+      ],
+      "levels": [
+        { "name": { "en": "Archivist", "fr": "Archiviste" }, "requiredXp": null, "rankRange": "E–S" }
+      ]
+    }
+  ]
+}

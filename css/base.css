@@ -1,0 +1,191 @@
+/* =========================================================================
+   BASE.CSS — Global rules shared by every page
+   -------------------------------------------------------------------------
+   Contents:
+     1. Light reset
+     2. Text elements (headings, paragraphs, links)
+     3. Accessibility helpers (focus, skip link, hidden text)
+     4. Generic containers
+     5. Buttons
+   ========================================================================= */
+
+/* ---------- 1. Light reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* The main content grows so the footer always stays at the bottom. */
+main {
+  flex: 1;
+}
+
+/* ---------- 2. Text elements ---------- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin: 0 0 var(--space-m);
+  color: var(--color-secondary);
+}
+
+h1 {
+  font-size: var(--font-size-title);
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: var(--font-size-large);
+}
+
+p {
+  margin: 0 0 var(--space-m);
+}
+
+a {
+  color: var(--color-primary);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+ul,
+ol {
+  margin: 0 0 var(--space-m);
+  padding-left: var(--space-l);
+}
+
+/* ---------- 3. Accessibility helpers ---------- */
+
+/* Visible outline when navigating with the keyboard. */
+:focus-visible {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+/* Hides text visually but keeps it readable by screen readers. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* "Skip to main content" link: only appears when focused with Tab. */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-m);
+  z-index: 100;
+  padding: var(--space-s) var(--space-m);
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  border-radius: var(--border-radius-small);
+}
+
+.skip-link:focus {
+  top: var(--space-m);
+}
+
+/* ---------- 4. Generic containers ---------- */
+
+/* Centers content and limits its width on large screens. */
+.page-container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-m);
+}
+
+/* Vertical spacing between the big blocks of a page. */
+.page-section {
+  padding: var(--space-xl) 0;
+}
+
+/* Introduction text below a page title. */
+.page-intro {
+  font-size: var(--font-size-large);
+  color: var(--color-text-muted);
+  max-width: 40rem;
+}
+
+/* Highlighted words inside a dark section. */
+.text-highlight {
+  color: var(--color-highlight);
+}
+
+/* ---------- 5. Buttons ----------
+   Convention: <a class="button"> for navigation to another page,
+               <button class="button"> for an action on the current page. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-s);
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-small);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.button--primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+}
+
+.button--primary:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-text-on-dark);
+}
+
+.button--secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.button--secondary:hover {
+  background-color: var(--color-highlight-soft);
+  color: var(--color-primary-hover);
+}
+
+/* Small text-like button (for example "Reset filters"). */
+.button--ghost {
+  padding: var(--space-s) var(--space-m);
+  background-color: transparent;
+  color: var(--color-primary);
+  text-decoration: underline;
+}

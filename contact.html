@@ -1,81 +1,62 @@
 <!DOCTYPE html>
+<!--
+  CONTACT PAGE (linked from the footer of every page)
+  TODO: put the real Discord invitation and email address in the links
+  below AND in js/config/siteNavigation.js (EXTERNAL_LINKS).
+-->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Solarpunk Guild - Contact</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | The Solarpunk Guild</title>
+  <meta name="description" content="Contact The Solarpunk Guild or join the community on Discord.">
+  <link rel="canonical" href="https://www.solarpunkguild.example/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact | The Solarpunk Guild">
+  <meta property="og:description" content="Contact The Solarpunk Guild or join the community on Discord.">
+  <meta property="og:url" content="https://www.solarpunkguild.example/contact.html">
+  <meta name="theme-color" content="#253D2C">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&display=swap">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <script type="module" src="js/pages/simplePage.js"></script>
 </head>
-<body>
+<body data-page="contact" data-page-title-key="page.contact.title" data-page-description-key="page.contact.description">
 
-<!-- ============ HEADER ============ -->
-<!--
-  Same header markup as index.html, but the nav is trimmed down to
-  just the two links this page needs (About + back to the Questboard).
-  Keeping the same class names/structure means it automatically
-  picks up the exact same CSS rules from style.css: nothing new
-  to style here, it just re-uses section 2 of the stylesheet.
--->
-<header>
-  <img src="logo.png" alt="The Solarpunk Guild logo" class="logo">
-  <div class="brand-text">
-    <h1>The Solarpunk Guild</h1>
-    <p>From dreams, to actions, to change</p>
-  </div>
-  <nav>
-    <a href="index.html">Questboard</a>
-    <a id="about-btn" href="About.html">Who We Are</a>
-  </nav>
-</header>
+  <header id="site-header"></header>
 
-<!-- ============ MAIN ============ -->
-<main>
-  <!--
-    .contact-container is the big flex row: left side = the form,
-    right side = the title/paragraph. On narrow screens (see the
-    media query in style.css) it switches to a column so the two
-    halves stack instead of squeezing side by side.
-  -->
-  <div class="contact-container">
+  <main id="main-content">
+    <section class="hero hero--compact">
+      <div class="page-container">
+        <h1 data-i18n="contact.title">Contact</h1>
+        <p class="page-intro" data-i18n="contact.intro">A question, an idea of quest or a partnership proposal? Reach out to the Guild.</p>
+      </div>
+    </section>
 
-    <!-- LEFT SIDE: the two stacked boxes + the form -->
-    <div class="form-visual">
-      <!--
-        This is the plain color box. It sits UNDERNEATH the white
-        box (z-index) and is nudged 1rem down and 1rem to the right
-        with a transform, which is what makes it "peek out" from
-        behind the white box on those two sides only.
-      -->
-      <div class="form-box-shadow" aria-hidden="true"></div>
+    <section class="page-section">
+      <div class="page-container content-grid">
+        <article class="content-block">
+          <h2 data-i18n="contact.discord.title">On Discord</h2>
+          <p data-i18n="contact.discord.text">The heart of the community: quest announcements, discussions and coordination of group activities.</p>
+          <a class="button button--primary" href="https://discord.com/" target="_blank" rel="noopener noreferrer" data-i18n="contact.discord.button">Join the Discord</a>
+        </article>
+        <article class="content-block">
+          <h2 data-i18n="contact.email.title">By email</h2>
+          <p data-i18n="contact.email.text">For partnerships, press or anything that does not fit in Discord.</p>
+          <a class="button button--secondary" href="mailto:contact@solarpunkguild.example" data-i18n="contact.email.button">Write to us</a>
+        </article>
+      </div>
+    </section>
+  </main>
 
-      <!--
-        This is the white box on top, holding the real form.
-        Because it's the same size as the box behind it but placed
-        at the "true" position, the offset box only shows on the
-        right and bottom edges.
-      -->
-      <form class="form-box" action="#" method="post">
-        <label for="contact-subject">Object</label>
-        <input type="text" id="contact-subject" name="subject" placeholder="What is this about?" required>
-
-        <label for="contact-email">Email address</label>
-        <input type="email" id="contact-email" name="email" placeholder="you@example.com" required>
-
-        <label for="contact-message">Content</label>
-        <textarea id="contact-message" name="message" rows="6" placeholder="Tell us everything we need to know..." required></textarea>
-
-        <button type="submit">Send</button>
-      </form>
-    </div>
-
-    <!-- RIGHT SIDE: title + paragraph -->
-    <div class="contact-text">
-      <h2>Let's help make this world a better place!</h2>
-      <p>Because this project is still in a prototype phase, if you want to create a quest send us all the information. We will only accept well thought and well described quest. If you have any other questions we will try to answer as fast as possible!</p>
-    </div>
-
-  </div>
-</main>
-
+  <footer id="site-footer"></footer>
 </body>
 </html>

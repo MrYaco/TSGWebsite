@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="The Solarpunk Guild">
+  <!-- Placeholder logo: a sun rising behind a leaf. Replace with the official logo. -->
+  <circle cx="32" cy="32" r="30" fill="#2E6F40"/>
+  <circle cx="32" cy="30" r="11" fill="#68BA7F"/>
+  <g stroke="#68BA7F" stroke-width="3" stroke-linecap="round">
+    <line x1="32" y1="8" x2="32" y2="14"/>
+    <line x1="14" y1="30" x2="9" y2="30"/>
+    <line x1="50" y1="30" x2="55" y2="30"/>
+    <line x1="19" y1="17" x2="15" y2="13"/>
+    <line x1="45" y1="17" x2="49" y2="13"/>
+  </g>
+  <path d="M14 50 C22 36 42 36 50 50 C40 46 24 46 14 50 Z" fill="#F9FBFF"/>
+  <path d="M32 50 L32 41" stroke="#253D2C" stroke-width="2" stroke-linecap="round"/>
+</svg>

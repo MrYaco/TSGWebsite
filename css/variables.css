@@ -1,0 +1,69 @@
+/* =========================================================================
+   VARIABLES.CSS — Design tokens of The Solarpunk Guild
+   -------------------------------------------------------------------------
+   Every color, font and spacing value used by the website lives here.
+   To change the look of the whole site, change a value in this file:
+   all other CSS files only refer to these variables (var(--name)).
+   ========================================================================= */
+
+:root {
+  /* ---------- Official color palette ---------- */
+  --color-primary: #2E6F40;    /* Main brand green: buttons, links, accents   */
+  --color-secondary: #253D2C;  /* Dark green: header, footer, dark sections  */
+  --color-background: #F9FBFF; /* Page background                            */
+  --color-text: #191E1E;       /* Main text                                  */
+  --color-highlight: #68BA7F;  /* Highlight text. Best used on dark green
+                                  backgrounds: on the light background it is
+                                  too pale to be read comfortably.           */
+
+  /* ---------- Colors derived from the palette ---------- */
+  --color-surface: #FFFFFF;           /* Cards, forms, modal              */
+  --color-text-muted: #4A5552;        /* Secondary text (hints, meta)     */
+  --color-text-on-dark: #F9FBFF;      /* Text on primary/secondary green  */
+  --color-border: #D6E0D9;            /* Thin separators and inputs       */
+  --color-placeholder-line: #D5DAD8;  /* Grey "description" lines on cards */
+  --color-primary-hover: #245A33;     /* Primary button when hovered      */
+  --color-highlight-soft: #E3F2E7;    /* Very light green backgrounds     */
+  --color-warning-background: #FFF6DB;
+  --color-warning-border: #C99A1E;
+  --color-error: #A3322A;
+
+  /* ---------- Quest level colors (one color per letter) ----------
+     Each color keeps white text readable (contrast >= 4.5:1).        */
+  --color-level-f: #5F6670;
+  --color-level-e: #2E7D4F;
+  --color-level-d: #1E6B74;
+  --color-level-c: #2B5BA8;
+  --color-level-b: #6B3FA0;
+  --color-level-a: #A33B4A;
+  --color-level-s: #9A6200;
+
+  /* ---------- Typography ---------- */
+  --font-heading: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-small: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-large: 1.25rem;
+  --font-size-title: clamp(2rem, 5vw, 3rem);
+  --line-height-base: 1.6;
+
+  /* ---------- Spacing scale (use these instead of random values) ---------- */
+  --space-xs: 0.25rem;
+  --space-s: 0.5rem;
+  --space-m: 1rem;
+  --space-l: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-xxl: 4rem;
+
+  /* ---------- Shapes and effects ---------- */
+  --border-radius-small: 6px;
+  --border-radius-medium: 12px;
+  --shadow-card: 0 2px 8px rgba(25, 30, 30, 0.08);
+  --shadow-raised: 0 12px 32px rgba(25, 30, 30, 0.18);
+  --offset-box-distance: 6px; /* Offset-box motif used on cards */
+  --transition-fast: 0.2s ease;
+
+  /* ---------- Layout ---------- */
+  --content-max-width: 72rem;
+  --header-height: 4.5rem;
+}

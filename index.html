@@ -1,137 +1,97 @@
 <!DOCTYPE html>
+<!--
+  HOME PAGE
+  Structure from "Website Structure.md":
+    Paragraph 0: catchy hook — Paragraph 1: project description —
+    Paragraph 2: project goal — Paragraph 3: invitation + button to the quest board.
+  The English text is written here for search engines; js/i18n replaces it
+  when the visitor chooses French (see the data-i18n keys).
+-->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>The Solarpunk Guild</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Solarpunk Guild | Real-world quests for a better world</title>
+  <meta name="description" content="The Solarpunk Guild is a quest board for real life: find free, safe and concrete actions that improve the world, complete them and come back for more.">
+  <!-- TODO: replace "www.solarpunkguild.example" by the real domain in every page. -->
+  <link rel="canonical" href="https://www.solarpunkguild.example/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Solarpunk Guild">
+  <meta property="og:description" content="Real-world quests for a better world: find an action, complete it, come back for the next one.">
+  <meta property="og:url" content="https://www.solarpunkguild.example/">
+  <meta name="theme-color" content="#253D2C">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
 
-<!-- ============ HEADER ============ -->
-<header>
-  <img src="logo.png" alt="The Solarpunk Guild logo" class="logo">
-  <div class="brand-text">
-    <h1>The Solarpunk Guild</h1>
-    <p>From dreams, to actions, to change</p>
-  </div>
-  <nav>
-    <a href="archive.html">What has been achieved</a>
-    <a id="about-btn" href="About.html">Who We Are</a>
-    <a id="create-quest-btn" href="contact.html">Create your quest</a>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&display=swap">
 
-  </nav>
-</header>
+  <!-- Styles: variables first, then from general to specific -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
 
-<!-- ============ MAIN ============ -->
-<main>
-  <!--
-    This div is the container for the quest cards, replacing the old
-    <table>. It starts EMPTY on purpose: JavaScript fills it with one
-    "card" element per quest, based on the data loaded from quests.json.
-    That's still the same "dynamic" principle as before: to add a quest,
-    you add an entry to quests.json, never a card of HTML by hand.
-  -->
-  <div id="quest-board" class="quest-board">
-    <!-- Cards are injected here by renderQuests() -->
-  </div>
-</main>
-
-<script>
-  // ---- 1. Load the data ----
-  // quests.json is now generated from the Guild's real quest database
-  // (a Google Sheet exported as CSV, converted to JSON). It only ever
-  // contains PUBLISHED quests, and only the fields that are safe to
-  // show publicly -- private fields like the Questgiver's email or the
-  // exact GPS location never leave the private database in the first
-  // place. This is the same "public/private boundary" that the future
-  // Apps Script endpoint will enforce; for now it's applied once, by
-  // hand, when quests.json is generated.
-  //
-  // fetch() asks the browser to go get that file. It returns a Promise,
-  // not the data directly, because reading a file takes a moment and
-  // JavaScript does not want to freeze the page while it waits.
-  // ".then()" says what to do once each step finishes.
-  fetch('quests.json')
-    .then(response => response.json()) // turn the file's raw text into real JS objects
-    .then(quests => renderQuests(quests))
-    .catch(error => {
-      // This runs if the file can't be reached at all -- most likely
-      // because the page was opened directly as a local file
-      // (file://...) instead of through a small local server.
-      // Browsers block that kind of fetch for security reasons.
-      console.error('Could not load quests.json:', error);
-      document.getElementById('quest-board').innerHTML =
-        '<p class="quest-board-error">Impossible de charger quests.json. Sers ce dossier avec un petit serveur local (voir la note ci-dessous) puis recharge la page.</p>';
-    });
-
-  // A quest's difficulty is a letter, E through S. Rather than write
-  // one CSS class per letter, we look the color up here in JS and set
-  // it as an inline CSS variable (--diff-color) on each badge -- see
-  // the .difficulty-badge rule in style.css. Only E/D/C exist in the
-  // MVP data for now (quests are capped at C), but the map covers the
-  // full scale from Quest_Design.md so nothing breaks later.
-  const DIFFICULTY_COLORS = {
-    E: 'var(--forest-green)',
-    D: 'var(--blue)',
-    C: 'var(--orange)',
-    B: '#a83232',
-    A: '#6b2fa8',
-    S: 'var(--ink)',
-  };
-
-  // ---- 2. The render function ----
-  // Turns an array of quest objects into card elements. This function
-  // never needs to change when the data source changes (local file
-  // today, a live Google Sheet endpoint tomorrow) because it only
-  // depends on the shape of a quest object, not on where it came from.
-  function renderQuests(quests) {
-    const board = document.getElementById('quest-board');
-    board.innerHTML = ''; // clear previous cards before redrawing
-
-    if (quests.length === 0) {
-      board.innerHTML = '<p class="quest-board-error">Aucune quête publiée pour le moment.</p>';
-      return;
-    }
-
-    quests.forEach(quest => {
-      const wrap = document.createElement('div');
-      wrap.className = 'quest-card-wrap';
-
-      const diffColor = DIFFICULTY_COLORS[quest.difficulty] || 'var(--ink-soft)';
-
-      // The primary action per the product vision is "open the official
-      // instructions" (quest.sourceUrl), not a generic "View" button.
-      // If a quest somehow has no sourceUrl, we disable the button
-      // instead of linking nowhere.
-      const hasSource = Boolean(quest.sourceUrl);
-      const buttonHtml = hasSource
-        ? `<a class="quest-instructions-btn" href="${quest.sourceUrl}" target="_blank" rel="noopener">Ouvrir les instructions</a>`
-        : `<button class="quest-instructions-btn" disabled>Instructions à venir</button>`;
-
-      wrap.innerHTML = `
-        <div class="quest-card-shadow" style="background-color: ${diffColor}"></div>
-        <div class="quest-card">
-          <div class="quest-card-header">
-            <h3 class="quest-title">${quest.title}</h3>
-            <div class="difficulty-badge" style="--diff-color: ${diffColor}">${quest.difficulty}</div>
-          </div>
-          <div class="quest-meta">
-            <span>${quest.type}</span>
-            <span>${quest.questgiver} (${quest.questgiverType})</span>
-            <span>${quest.region}</span>
-          </div>
-          <p class="quest-description">${quest.description}</p>
-          <div class="quest-card-footer">
-            <span class="quest-xp">+${quest.xpReward} XP</span>
-            ${buttonHtml}
-          </div>
-        </div>
-      `;
-
-      board.appendChild(wrap);
-    });
+  <!-- Structured data: helps search engines understand who we are -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "The Solarpunk Guild",
+    "url": "https://www.solarpunkguild.example/",
+    "logo": "https://www.solarpunkguild.example/assets/images/logo.svg",
+    "slogan": "Let's build the future together."
   }
-</script>
+  </script>
 
+  <!-- type="module" lets the script import other files; it runs after the page is read -->
+  <script type="module" src="js/pages/simplePage.js"></script>
+</head>
+<body data-page="home" data-page-title-key="page.home.title" data-page-description-key="page.home.description">
+
+  <!-- Filled by js/components/siteHeader.js -->
+  <header id="site-header"></header>
+
+  <main id="main-content">
+
+    <!-- Paragraph 0: catchy hook -->
+    <section class="hero" aria-labelledby="home-hook-title">
+      <div class="page-container">
+        <h1 id="home-hook-title" data-i18n="home.hook.title">Let's build the future together.</h1>
+        <p class="page-intro" data-i18n="home.hook.text">Don't wait for the perfect moment or idea. Just take a quest!</p>
+        <a class="button button--primary" href="questboard.html" data-i18n="home.hook.button">Find a quest</a>
+      </div>
+    </section>
+
+    <!-- Paragraphs 1 and 2: description and goal of the project -->
+    <section class="page-section">
+      <div class="page-container content-grid">
+        <article class="content-block">
+          <h2 data-i18n="home.description.title">What is the Solarpunk Guild?</h2>
+          <p data-i18n="home.description.text">The Solarpunk Guild is an adventurers' guild brought into real life. We do not slay dragons or play with magic but we are a community that gathers concrete actions such as citizen science, solo actions near you, local group projects and online contributions. All presented as quests that anyone can take on, with trustworthy instructions and even some rewards!</p>
+        </article>
+        <article class="content-block">
+          <h2 data-i18n="home.objective.title">Our goal</h2>
+          <p data-i18n="home.objective.text">We want to help those yearning for a more sustainable, community-driven future by giving them opportunities to make a real difference in the form of quests.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Paragraph 3: invitation + button to the quest board -->
+    <section class="page-section">
+      <div class="page-container">
+        <div class="call-to-action">
+          <h2 data-i18n="home.invitation.title">Ready for your first quest?</h2>
+          <p data-i18n="home.invitation.text">Choose an action, follow the official instructions and come back for the next one. Your adventure starts now.</p>
+          <a class="button button--primary" href="questboard.html" data-i18n="home.invitation.button">Open the quest board</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Filled by js/components/siteFooter.js -->
+  <footer id="site-footer"></footer>
 </body>
 </html>

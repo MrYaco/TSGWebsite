@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+  ARCHIVE PAGE
+  Paragraph 1: "Looking behind to forge the road ahead."
+  Filters: completed by (member), quest type, difficulty.
+  Shows the quests with isCompleted = true.
+  Logic: js/pages/archivePage.js -> js/components/questBrowser.js
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Archive of completed quests | The Solarpunk Guild</title>
+  <meta name="description" content="Explore the quests already completed by the members of The Solarpunk Guild.">
+  <link rel="canonical" href="https://www.solarpunkguild.example/archive.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Archive | The Solarpunk Guild">
+  <meta property="og:description" content="Looking behind to forge the road ahead: the quests already completed by the Guild.">
+  <meta property="og:url" content="https://www.solarpunkguild.example/archive.html">
+  <meta name="theme-color" content="#253D2C">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&display=swap">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <script type="module" src="js/pages/archivePage.js"></script>
+</head>
+<body data-page="archive" data-page-title-key="page.archive.title" data-page-description-key="page.archive.description">
+
+  <header id="site-header"></header>
+
+  <main id="main-content">
+    <section class="hero hero--compact">
+      <div class="page-container">
+        <h1 data-i18n="archive.title">Archive</h1>
+        <p class="page-intro" data-i18n="archive.intro">Looking behind to forge the road ahead.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-container">
+
+        <form class="filter-bar" role="search" data-i18n-attributes="aria-label:filters.label">
+          <div class="filter-bar__field">
+            <label class="filter-bar__label" for="filter-member" data-i18n="filters.member">Completed by</label>
+            <select class="filter-bar__select" id="filter-member"></select>
+          </div>
+          <div class="filter-bar__field">
+            <label class="filter-bar__label" for="filter-quest-type" data-i18n="filters.questType">Quest type</label>
+            <select class="filter-bar__select" id="filter-quest-type"></select>
+          </div>
+          <div class="filter-bar__field">
+            <label class="filter-bar__label" for="filter-difficulty" data-i18n="filters.difficulty">Difficulty</label>
+            <select class="filter-bar__select" id="filter-difficulty"></select>
+          </div>
+          <button class="button button--ghost" type="button" id="reset-filters-button" data-i18n="filters.reset">Reset filters</button>
+        </form>
+
+        <p class="result-count" id="quest-result-count" aria-live="polite"></p>
+        <ul class="quest-grid" id="quest-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

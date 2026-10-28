@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+  QUEST CREATION PAGE (Guild team only during the pilot)
+  The form fields follow the quest structure of "Database Structure.md".
+  The "name" of each field is the key read by buildQuestFromForm()
+  in js/pages/questCreationPage.js.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create a quest | The Solarpunk Guild</title>
+  <meta name="description" content="Quest creation tool reserved for authorized members of The Solarpunk Guild.">
+  <!-- Internal tool: search engines should not list it -->
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#253D2C">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&display=swap">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <script type="module" src="js/pages/questCreationPage.js"></script>
+</head>
+<body data-page="questCreation" data-page-title-key="page.questCreation.title" data-page-description-key="page.questCreation.description">
+
+  <header id="site-header"></header>
+
+  <main id="main-content">
+    <section class="hero hero--compact">
+      <div class="page-container">
+        <h1 data-i18n="questCreation.title">Create a quest</h1>
+        <p class="page-intro" data-i18n="questCreation.intro">Fill in this form to generate a quest entry ready to be added to the quest database.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-container">
+        <p class="notice notice--warning" data-i18n="questCreation.notice">Reserved for authorized Guild members during the pilot. A quest must be safe, lawful and free: it can never require a donation, a purchase or a payment.</p>
+
+        <form id="quest-creation-form" novalidate>
+
+          <!-- ===== Section 1: general information ===== -->
+          <fieldset class="form-section">
+            <legend data-i18n="questCreation.sectionGeneral">General information</legend>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="quest-id" data-i18n="questCreation.questId">Quest ID</label>
+                <input id="quest-id" name="questId" type="text" required pattern="Q-[0-9]{4}" placeholder="Q-0009" aria-describedby="quest-id-hint">
+                <span class="form-field__hint" id="quest-id-hint" data-i18n="questCreation.questIdHint">Format: Q-0001</span>
+              </div>
+              <div class="form-field">
+                <label for="quest-level" data-i18n="questCreation.level">Level</label>
+                <select id="quest-level" name="level" required></select>
+              </div>
+              <div class="form-field">
+                <label for="quest-archetype" data-i18n="questCreation.archetype">Archetype (class)</label>
+                <select id="quest-archetype" name="archetype" required></select>
+              </div>
+              <div class="form-field">
+                <label for="quest-type" data-i18n="questCreation.questType">Quest type</label>
+                <select id="quest-type" name="questType" required></select>
+              </div>
+              <div class="form-field">
+                <label for="questgiver-id" data-i18n="questCreation.questgiverId">Questgiver ID</label>
+                <input id="questgiver-id" name="questgiverId" type="text" required placeholder="U-0001">
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ===== Section 2: bilingual content ===== -->
+          <fieldset class="form-section">
+            <legend data-i18n="questCreation.sectionContent">Content (English and French)</legend>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="quest-title-en" data-i18n="questCreation.titleEn">Title (English)</label>
+                <input id="quest-title-en" name="titleEn" type="text" required maxlength="80">
+              </div>
+              <div class="form-field">
+                <label for="quest-title-fr" data-i18n="questCreation.titleFr">Title (French)</label>
+                <input id="quest-title-fr" name="titleFr" type="text" maxlength="80" lang="fr">
+              </div>
+              <div class="form-field">
+                <label for="quest-description-en" data-i18n="questCreation.descriptionEn">Description (English)</label>
+                <textarea id="quest-description-en" name="descriptionEn" required></textarea>
+              </div>
+              <div class="form-field">
+                <label for="quest-description-fr" data-i18n="questCreation.descriptionFr">Description (French)</label>
+                <textarea id="quest-description-fr" name="descriptionFr" lang="fr"></textarea>
+              </div>
+              <div class="form-field">
+                <label for="quest-milestones-en" data-i18n="questCreation.milestonesEn">Milestones (English)</label>
+                <textarea id="quest-milestones-en" name="milestonesEn" aria-describedby="milestones-hint"></textarea>
+                <span class="form-field__hint" id="milestones-hint" data-i18n="questCreation.oneItemPerLine">One item per line.</span>
+              </div>
+              <div class="form-field">
+                <label for="quest-milestones-fr" data-i18n="questCreation.milestonesFr">Milestones (French)</label>
+                <textarea id="quest-milestones-fr" name="milestonesFr" lang="fr"></textarea>
+              </div>
+              <div class="form-field">
+                <label for="quest-rewards-en" data-i18n="questCreation.rewardsEn">Rewards (English)</label>
+                <textarea id="quest-rewards-en" name="rewardsEn" aria-describedby="rewards-hint"></textarea>
+                <span class="form-field__hint" id="rewards-hint" data-i18n="questCreation.oneItemPerLine">One item per line.</span>
+              </div>
+              <div class="form-field">
+                <label for="quest-rewards-fr" data-i18n="questCreation.rewardsFr">Rewards (French)</label>
+                <textarea id="quest-rewards-fr" name="rewardsFr" lang="fr"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ===== Section 3: details ===== -->
+          <fieldset class="form-section">
+            <legend data-i18n="questCreation.sectionDetails">Details</legend>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="quest-participants-min" data-i18n="questCreation.participantsMin">Minimum participants</label>
+                <input id="quest-participants-min" name="participantsMin" type="number" min="1" value="1" required>
+              </div>
+              <div class="form-field">
+                <label for="quest-participants-max" data-i18n="questCreation.participantsMax">Maximum participants</label>
+                <input id="quest-participants-max" name="participantsMax" type="number" min="1" value="1" required>
+              </div>
+              <div class="form-field">
+                <label for="quest-expense" data-i18n="questCreation.expense">Supposed expense ($)</label>
+                <!-- max="0": the MVP forbids any monetary action -->
+                <input id="quest-expense" name="supposedExpense" type="number" min="0" max="0" value="0" required aria-describedby="expense-hint">
+                <span class="form-field__hint" id="expense-hint" data-i18n="questCreation.expenseHint">Must stay at 0 during the MVP: no monetary action.</span>
+              </div>
+              <div class="form-field">
+                <label for="quest-location" data-i18n="questCreation.location">Location</label>
+                <input id="quest-location" name="location" type="text" required aria-describedby="location-hint">
+                <span class="form-field__hint" id="location-hint" data-i18n="questCreation.locationHint">City or region, or "Online". Never a private address.</span>
+              </div>
+              <div class="form-field">
+                <label for="quest-related-ids" data-i18n="questCreation.relatedQuestIds">Related quest IDs</label>
+                <input id="quest-related-ids" name="relatedQuestIds" type="text" placeholder="Q-0001, Q-0004" aria-describedby="related-hint">
+                <span class="form-field__hint" id="related-hint" data-i18n="questCreation.relatedQuestIdsHint">Separate the IDs with commas.</span>
+              </div>
+              <div class="form-field form-field--full-width">
+                <label for="quest-instructions-url" data-i18n="questCreation.instructionsUrl">Official instructions URL</label>
+                <input id="quest-instructions-url" name="officialInstructionsUrl" type="url" required placeholder="https://">
+              </div>
+            </div>
+          </fieldset>
+
+          <button class="button button--primary" type="submit" data-i18n="questCreation.submit">Generate the quest entry</button>
+        </form>
+
+        <!-- Result: shown after a valid submission -->
+        <section class="page-section" id="quest-result-section" hidden aria-labelledby="quest-result-title">
+          <h2 id="quest-result-title" data-i18n="questCreation.resultTitle">Quest entry ready</h2>
+          <p data-i18n="questCreation.resultHint">Copy this entry and add it to the file data/quests.json.</p>
+          <pre class="code-output"><code id="generated-quest-json"></code></pre>
+          <button class="button button--secondary" type="button" id="copy-quest-json-button" data-i18n="questCreation.copy">Copy</button>
+          <p class="status-message" id="copy-status-message" role="status"></p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

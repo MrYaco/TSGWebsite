@@ -1,0 +1,198 @@
+[
+  {
+    "questId": "Q-0001",
+    "title": { "en": "Photograph the wildlife around you", "fr": "Photographiez la faune et la flore autour de vous" },
+    "description": {
+      "en": "Take photos of plants, insects or animals near you and share them on iNaturalist, a public citizen-science platform. Each observation helps scientists map biodiversity.",
+      "fr": "Photographiez des plantes, des insectes ou des animaux près de chez vous et partagez-les sur iNaturalist, une plateforme publique de science citoyenne. Chaque observation aide les scientifiques à cartographier la biodiversité."
+    },
+    "milestones": [
+      { "en": "Create a free iNaturalist account", "fr": "Créer un compte iNaturalist gratuit" },
+      { "en": "Photograph three different living things", "fr": "Photographier trois êtres vivants différents" },
+      { "en": "Upload your observations following the official guide", "fr": "Téléverser vos observations en suivant le guide officiel" }
+    ],
+    "level": "F",
+    "archetype": "archivist",
+    "questType": "citizen-science",
+    "suggestedParticipants": { "min": 1, "max": 1 },
+    "supposedExpense": 0,
+    "rewards": [{ "en": "Discord role progress: +10 points", "fr": "Progression de rôle Discord : +10 points" }],
+    "location": { "en": "Anywhere", "fr": "Partout" },
+    "relatedQuestIds": ["Q-0004"],
+    "questgiverId": "U-0001",
+    "officialInstructionsUrl": "https://www.inaturalist.org/pages/getting+started",
+    "status": "published",
+    "isCompleted": false
+  },
+  {
+    "questId": "Q-0002",
+    "title": { "en": "Repair instead of replacing", "fr": "Réparer plutôt que remplacer" },
+    "description": {
+      "en": "Choose a broken object at home (clothing, small furniture, bicycle) and repair it with tools you already own. Every repaired object is one less object in the landfill.",
+      "fr": "Choisissez un objet brisé à la maison (vêtement, petit meuble, vélo) et réparez-le avec les outils que vous possédez déjà. Chaque objet réparé est un objet de moins au dépotoir."
+    },
+    "milestones": [
+      { "en": "Choose an object to repair", "fr": "Choisir un objet à réparer" },
+      { "en": "Find a repair guide for this object", "fr": "Trouver un guide de réparation pour cet objet" },
+      { "en": "Repair it and use it again", "fr": "Le réparer et l'utiliser de nouveau" }
+    ],
+    "level": "E",
+    "archetype": "artisan",
+    "questType": "solo-nearby",
+    "suggestedParticipants": { "min": 1, "max": 1 },
+    "supposedExpense": 0,
+    "rewards": [{ "en": "Discord role progress: +15 points", "fr": "Progression de rôle Discord : +15 points" }],
+    "location": { "en": "At home", "fr": "À la maison" },
+    "relatedQuestIds": [],
+    "questgiverId": "U-0001",
+    "officialInstructionsUrl": "https://www.ifixit.com/Guide",
+    "status": "published",
+    "isCompleted": false
+  },
+  {
+    "questId": "Q-0003",
+    "title": { "en": "Neighbourhood litter cleanup", "fr": "Nettoyage du quartier" },
+    "description": {
+      "en": "Gather a few neighbours and clean up a park, a street or a riverbank for one hour. Coordinate the meeting point and the date in the Guild Discord.",
+      "fr": "Réunissez quelques voisins et nettoyez un parc, une rue ou une berge pendant une heure. Coordonnez le point de rencontre et la date sur le Discord de la Guilde."
+    },
+    "milestones": [
+      { "en": "Choose a public place and a date in Discord", "fr": "Choisir un lieu public et une date sur Discord" },
+      { "en": "Bring gloves and bags you already own", "fr": "Apporter des gants et des sacs que vous possédez déjà" },
+      { "en": "Sort the waste and recycle what can be recycled", "fr": "Trier les déchets et recycler ce qui peut l'être" }
+    ],
+    "level": "D",
+    "archetype": "dryad",
+    "questType": "local-group",
+    "suggestedParticipants": { "min": 3, "max": 10 },
+    "supposedExpense": 0,
+    "rewards": [{ "en": "Discord role progress: +25 points", "fr": "Progression de rôle Discord : +25 points" }],
+    "location": "Montréal, QC",
+    "relatedQuestIds": [],
+    "questgiverId": "U-0002",
+    "officialInstructionsUrl": "https://www.shorelinecleanup.ca/",
+    "status": "published",
+    "isCompleted": false
+  },
+  {
+    "questId": "Q-0004",
+    "title": { "en": "Classify galaxies from your couch", "fr": "Classer des galaxies depuis votre divan" },
+    "description": {
+      "en": "Join a Zooniverse research project and help scientists by classifying images online. No experience required: the project tutorial explains everything.",
+      "fr": "Joignez un projet de recherche Zooniverse et aidez les scientifiques en classant des images en ligne. Aucune expérience requise : le tutoriel du projet explique tout."
+    },
+    "milestones": [
+      { "en": "Choose a project on Zooniverse", "fr": "Choisir un projet sur Zooniverse" },
+      { "en": "Complete the project tutorial", "fr": "Terminer le tutoriel du projet" },
+      { "en": "Classify 20 images", "fr": "Classer 20 images" }
+    ],
+    "level": "F",
+    "archetype": "archivist",
+    "questType": "remote-online",
+    "suggestedParticipants": { "min": 1, "max": 1 },
+    "supposedExpense": 0,
+    "rewards": [{ "en": "Discord role progress: +10 points", "fr": "Progression de rôle Discord : +10 points" }],
+    "location": { "en": "Online", "fr": "En ligne" },
+    "relatedQuestIds": ["Q-0001"],
+    "questgiverId": "U-0001",
+    "officialInstructionsUrl": "https://www.zooniverse.org/projects",
+    "status": "published",
+    "isCompleted": false
+  },
+  {
+    "questId": "Q-0005",
+    "title": { "en": "Draw your solarpunk neighbourhood", "fr": "Dessinez votre quartier solarpunk" },
+    "description": {
+      "en": "Imagine your street in 2050, greener and fairer, and turn it into a drawing, a painting or a collage. Share it in the art channel of the Guild Discord to inspire others.",
+      "fr": "Imaginez votre rue en 2050, plus verte et plus juste, et transformez-la en dessin, en peinture ou en collage. Partagez-la dans le salon artistique du Discord de la Guilde pour inspirer les autres."
+    },
+    "milestones": [
+      { "en": "Observe your street and note what could change", "fr": "Observer votre rue et noter ce qui pourrait changer" },
+      { "en": "Create your artwork with the materials you have", "fr": "Créer votre œuvre avec le matériel que vous avez" },
+      { "en": "Share it in Discord", "fr": "La partager sur Discord" }
+    ],
+    "level": "E",
+    "archetype": "artist",
+    "questType": "remote-online",
+    "suggestedParticipants": { "min": 1, "max": 1 },
+    "supposedExpense": 0,
+    "rewards": [{ "en": "Discord role progress: +15 points", "fr": "Progression de rôle Discord : +15 points" }],
+    "location": { "en": "Online", "fr": "En ligne" },
+    "relatedQuestIds": [],
+    "questgiverId": "U-0002",
+    "officialInstructionsUrl": "https://discord.com/",
+    "status": "published",
+    "isCompleted": false
+  },
+  {
+    "questId": "Q-0006",
+    "title": { "en": "Measure the darkness of your night sky", "fr": "Mesurez l'obscurité de votre ciel nocturne" },
+    "description": {
+      "en": "On a clear night, compare the stars you see with the charts of Globe at Night and report your observation. The data helps researchers follow light pollution around the world.",
+      "fr": "Par une nuit claire, comparez les étoiles que vous voyez avec les cartes de Globe at Night et déclarez votre observation. Les données aident les chercheurs à suivre la pollution lumineuse dans le monde."
+    },
+    "milestones": [
+      { "en": "Find the constellation of the month", "fr": "Repérer la constellation du mois" },
+      { "en": "Compare the sky with the magnitude charts", "fr": "Comparer le ciel avec les cartes de magnitude" },
+      { "en": "Submit your observation online", "fr": "Soumettre votre observation en ligne" }
+    ],
+    "level": "E",
+    "archetype": "nightwatcher",
+    "questType": "citizen-science",
+    "suggestedParticipants": { "min": 1, "max": 1 },
+    "supposedExpense": 0,
+    "rewards": [{ "en": "Discord role progress: +15 points", "fr": "Progression de rôle Discord : +15 points" }],
+    "location": { "en": "Anywhere", "fr": "Partout" },
+    "relatedQuestIds": [],
+    "questgiverId": "U-0001",
+    "officialInstructionsUrl": "https://globeatnight.org/",
+    "status": "archived",
+    "isCompleted": true
+  },
+  {
+    "questId": "Q-0007",
+    "title": { "en": "Autumn cleanup of the community garden", "fr": "Nettoyage d'automne du jardin communautaire" },
+    "description": {
+      "en": "Help prepare a community garden for winter: harvest the last vegetables, compost the dead plants and protect the soil with leaves.",
+      "fr": "Aidez à préparer un jardin communautaire pour l'hiver : récoltez les derniers légumes, compostez les plantes mortes et protégez le sol avec des feuilles."
+    },
+    "milestones": [
+      { "en": "Join the group at the garden", "fr": "Rejoindre le groupe au jardin" },
+      { "en": "Harvest and compost", "fr": "Récolter et composter" },
+      { "en": "Cover the soil with dead leaves", "fr": "Couvrir le sol de feuilles mortes" }
+    ],
+    "level": "C",
+    "archetype": "gardener",
+    "questType": "local-group",
+    "suggestedParticipants": { "min": 4, "max": 12 },
+    "supposedExpense": 0,
+    "rewards": [{ "en": "Discord role progress: +30 points", "fr": "Progression de rôle Discord : +30 points" }],
+    "location": "Montréal, QC",
+    "relatedQuestIds": ["Q-0003"],
+    "questgiverId": "U-0002",
+    "officialInstructionsUrl": "https://montreal.ca/en/topics/community-gardens",
+    "status": "archived",
+    "isCompleted": true
+  },
+  {
+    "questId": "Q-0008",
+    "title": { "en": "Draft quest example (not public)", "fr": "Exemple de quête brouillon (non publique)" },
+    "description": {
+      "en": "A draft quest: it must never appear on the website.",
+      "fr": "Une quête brouillon : elle ne doit jamais apparaître sur le site."
+    },
+    "milestones": [],
+    "level": "F",
+    "archetype": "artisan",
+    "questType": "solo-nearby",
+    "suggestedParticipants": { "min": 1, "max": 1 },
+    "supposedExpense": 0,
+    "rewards": [],
+    "location": { "en": "Online", "fr": "En ligne" },
+    "relatedQuestIds": [],
+    "questgiverId": "U-0001",
+    "officialInstructionsUrl": "",
+    "status": "draft",
+    "isCompleted": false
+  }
+]
